@@ -28,7 +28,7 @@ namespace AUModpackTools.Patches
             if (_twitchSprite == null)
                 _twitchSprite = SpriteLoader.LoadSpriteFromResources("twitch.png");
 
-            ButtonBuilder.BuildMainMenuButton(
+            ObjectBuilder.BuildButton(
                 _buttonPos,
                 _twitchSprite,
                 _twitchColor,

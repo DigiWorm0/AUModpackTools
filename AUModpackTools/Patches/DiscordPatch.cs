@@ -28,7 +28,7 @@ namespace AUModpackTools.Patches
             if (_discordSprite == null)
                 _discordSprite = SpriteLoader.LoadSpriteFromResources("discord.png");
 
-            ButtonBuilder.BuildMainMenuButton(
+            ObjectBuilder.BuildButton(
                 _buttonPos,
                 _discordSprite,
                 _discordColor,
