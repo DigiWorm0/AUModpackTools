@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using AUModpackTools.Utils;
+using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,7 +15,7 @@ namespace AUModpackTools.Patches
     [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.Start))]
     public static class BannerPatch
     {
-        private static string[] _oldBannerList = new string[]
+        private static readonly string[] _oldBannerList = new string[]
         {
             "MainUI/bannerLogo_AmongUs",
             "bannerLogo_TownOfUs", // Town of Us
@@ -30,30 +31,7 @@ namespace AUModpackTools.Patches
 
             // Load Banner
             if (_bannerSprite == null)
-            {
-                string gameDir = Assembly.GetAssembly(typeof(AUModpackTools))?.Location ?? "/";
-                string bannerPath = Path.Combine(Path.GetDirectoryName(gameDir) ?? "/", AUModpackTools.CustomConfig.BannerFileName.Value);
-                if (!File.Exists(bannerPath))
-                    throw new Exception($"Failed to find banner image at {bannerPath}");
-                byte[] bannerData = File.ReadAllBytes(bannerPath);
-                Texture2D bannerTexture = new(1, 1, TextureFormat.RGBA32, false)
-                {
-                    wrapMode = TextureWrapMode.Clamp,
-                    filterMode = FilterMode.Bilinear,
-                    hideFlags = HideFlags.HideAndDontSave,
-                    requestedMipmapLevel = 0
-                };
-                ImageConversion.LoadImage(bannerTexture, bannerData);
-
-                _bannerSprite = Sprite.Create(
-                    bannerTexture,
-                    new Rect(0, 0, bannerTexture.width, bannerTexture.height),
-                    new Vector2(0.5f, 0.5f),
-                    100f,
-                    0,
-                    SpriteMeshType.FullRect
-                );
-            }
+                _bannerSprite = SpriteLoader.LoadSpriteFromFile(AUModpackTools.CustomConfig.BannerFileName.Value);
 
             // Shift Old Banners
             foreach (var oldBannerName in _oldBannerList)
@@ -72,7 +50,7 @@ namespace AUModpackTools.Patches
                 }
             }
 
-            // AUModpackTools Banner
+            // Add New Banner
             var bannerOffset = new Vector3(AUModpackTools.CustomConfig.BannerX.Value, AUModpackTools.CustomConfig.BannerY.Value);
             var banner = new GameObject("bannerLogo_AUModpackTools");
             banner.transform.position = Vector3.up * 0.9f + bannerOffset;

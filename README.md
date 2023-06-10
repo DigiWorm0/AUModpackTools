@@ -11,7 +11,7 @@ A Small Toolkit for Among Us Modpacks
 Most configuration is done by editing the config file located in `BepInEx/config/com.DigiWorm.AUModpackTools.cfg`. Each option can be modified to fit the needs of your modpack. See an option we don't have? Submit an [issue](https://github.com/DigiWorm0/AUModpackTools/issues/new).
 
 **Banner:** Adds a banner located on the main menu screen. A default image is included in `BepInEx/plugins/banner.png`.
-**Credits:** A list of credits to attribute modders, artists, or other contributors. Supports [TMP Rich Text](http://digitalnativestudios.com/textmeshpro/docs/rich-text/).
+**Credits:** A list of credits to attribute modders, artists, or other contributors. A default text file is included in `BepInEx/plugins/credits.txt`. Supports [TMP Rich Text](http://digitalnativestudios.com/textmeshpro/docs/rich-text/).
 **Discord:** Adds a discord link to the main menu screen. Opens the link in a new browser tab.
 **Twitch:** Adds a twitch link to the main menu screen. Opens the link in a new browser tab.
 **Popup:** Launches a small popup in-game on start. Can be used for announcements or other information.
