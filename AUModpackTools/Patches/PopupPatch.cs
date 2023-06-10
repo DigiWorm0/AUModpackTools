@@ -14,14 +14,17 @@ namespace AUModpackTools.Patches
     [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.Start))]
     public static class PopupPatch
     {
+        private static bool _hasShown = false;
+
         public static void Postfix(MainMenuManager __instance)
         {
-            if (!AUModpackTools.CustomConfig.EnablePopup.Value)
+            if (!AUModpackTools.CustomConfig.EnablePopup.Value || _hasShown)
                 return;
 
             ObjectBuilder.BuildPopup(
                 AUModpackTools.CustomConfig.PopupText.Value
             );
+            _hasShown = true;
         }
     }
 }

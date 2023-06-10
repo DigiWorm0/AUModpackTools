@@ -17,8 +17,8 @@ namespace AUModpackTools.Utils
         public ConfigEntry<float> BannerY { get; private set; }
 
         // Credits
-        public ConfigEntry<bool> EnableCredits { get; private set; }
-        public ConfigEntry<string> CreditsFileName { get; private set; }
+        //public ConfigEntry<bool> EnableCredits { get; private set; }
+        //public ConfigEntry<string> CreditsFileName { get; private set; }
 
         // Discord
         public ConfigEntry<bool> EnableDiscord { get; private set; }
@@ -40,8 +40,8 @@ namespace AUModpackTools.Utils
             BannerX = configFile.Bind("Banner", "X", 0f, "The X offset of the banner image");
             BannerY = configFile.Bind("Banner", "Y", 0f, "The Y offset of the banner image");
 
-            EnableCredits = configFile.Bind("Credits", "Enable", false, "Enable a custom credits screen");
-            CreditsFileName = configFile.Bind("Credits", "FileName", "credits.txt", "The file name of the credits text located in the BepInEx/plugins folder");
+            //EnableCredits = configFile.Bind("Credits", "Enable", false, "Enable a custom credits screen");
+            //CreditsFileName = configFile.Bind("Credits", "FileName", "credits.txt", "The file name of the credits text located in the BepInEx/plugins folder");
 
             EnableDiscord = configFile.Bind("Discord", "Enable", false, "Enable a custom discord link");
             DiscordLink = configFile.Bind("Discord", "Link", "https://discord.gg/invite", "The discord link to open when clicking the discord button");
