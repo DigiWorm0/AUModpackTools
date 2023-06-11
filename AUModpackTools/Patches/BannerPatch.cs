@@ -19,7 +19,7 @@ namespace AUModpackTools.Patches
         {
             "MainUI/bannerLogo_AmongUs",
             "bannerLogo_TownOfUs", // Town of Us
-            "bannerLogo_TOR" // The Other Roles
+            "bannerLogo_TOR", // The Other Roles
             "bannerLogo_TOM" // Town Of Modrole
         };
 
