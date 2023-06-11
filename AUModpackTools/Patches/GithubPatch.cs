@@ -15,7 +15,8 @@ namespace AUModpackTools.Patches
     public static class GithubPatch
     {
         private static readonly Color _githubcolor = new Color(64f, 120f, 192f);
-        private static readonly Vector3 _buttonPos = new Vector3(4.25f, 0.6f, -1.0f);
+        // fix github button position 
+        private static readonly Vector3 _buttonPos = new (-4, 0, 0);
 
         private static Sprite? _githubSprite = null;
 
