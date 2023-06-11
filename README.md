@@ -10,6 +10,9 @@ A Small Toolkit for Among Us Modpacks (Edited)
 ## Configuration
 Most configuration is done by editing the config file located in `BepInEx/config/com.DigiWorm.AUModpackTools.cfg`. Each option can be modified to fit the needs of your modpack. See an option we don't have? Submit an [issue](https://github.com/Wael1231/AUModpackTools/issues/new).
 
+## Have you any features wante to add it ?
+if you have an features to don't hesit open an [pull-request] (https:\\github.com/Wael1231/AUModpackTools/pulls/new).
+
 **Banner:** Adds a banner located on the main menu screen. A default image is included in `BepInEx/plugins/banner.png`.\
 **Discord:** Adds a discord link to the main menu screen. Opens the link in a new browser tab.\
 **Github:** Adds a github link to the main menu screen. open the link in a new browser tab.\
@@ -22,7 +25,7 @@ This software is distributed under the GNU GPLv3 License
 <hr />
 
 ## Credit
-DigiWorm : modification of the mod 
+DigiWorm0 : modification of the mod 
 <hr />
 
 AUModpackTools is not affiliated with Among Us or Innersloth LLC, and the content contained therein is not endorsed or otherwise sponsored by Innersloth LLC. Portions of the materials contained herein are property of Innersloth LLC. © Innersloth LLC.
