@@ -51,7 +51,7 @@ namespace AUModpackTools.Utils
             DiscordLink = configFile.Bind("Discord", "Link", "https://discord.gg/invite", "The discord link to open when clicking the discord button");
             
             EnableGithub = configFile.Bind("Github", "Enable", false, "Enable a custom Github repo link");
-            GithubLink  = configFile.Bind("Github", "Link", "https://github.com/UserName/Repo", "Github Link to open when clicking the Github button" ("Make sure change the link"));
+            GithubLink  = configFile.Bind("Github", "Link", "https://github.com/UserName/Repo", "Github Link to open when clicking the Github button");
 
             EnableTwitch = configFile.Bind("Twitch", "Enable", false, "Enable a custom twitch link");
             TwitchLink = configFile.Bind("Twitch", "Link", "https://www.twitch.tv/channel_name", "The twitch link to open when clicking the twitch button");
