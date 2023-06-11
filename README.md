@@ -2,7 +2,7 @@
 A Small Toolkit for Among Us Modpacks (Edited)
 
 ## Installation
-1. Download `AUModpackTools.zip` from the [latest release](https://github.com/DigiWorm0/AUModpackTools/releases).
+1. Download `AUModpackTools.zip` from the [latest release](https://github.com/Wael1231/AUModpackTools/releases).
 2. Extract the contents of the zip to the root folder of your Among Us modpack
 3. Open Among Us to generate config file(s)
 4. See [Configuration]()
@@ -11,7 +11,7 @@ A Small Toolkit for Among Us Modpacks (Edited)
 Most configuration is done by editing the config file located in `BepInEx/config/com.DigiWorm.AUModpackTools.cfg`. Each option can be modified to fit the needs of your modpack. See an option we don't have? Submit an [issue](https://github.com/Wael1231/AUModpackTools/issues/new).
 
 ## Have you any features wante to add it ?
-if you have an features to don't hesit open an [pull-request] (https:\\github.com/Wael1231/AUModpackTools/pulls/new).
+if you have an features to don't hesit open an [pull-request] (https://github.com/Wael1231/AUModpackTools/pulls/new).
 
 **Banner:** Adds a banner located on the main menu screen. A default image is included in `BepInEx/plugins/banner.png`.\
 **Discord:** Adds a discord link to the main menu screen. Opens the link in a new browser tab.\
