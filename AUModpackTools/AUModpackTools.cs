@@ -12,6 +12,7 @@ namespace AUModpackTools
     [BepInDependency(ReactorPlugin.Id)]
     [BepInDependency("com.slushiegoose.townofus", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("me.eisbison.theotherroles", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("com.Wael1231.townofmodrole", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInProcess("Among Us.exe")]
     [ReactorModFlags(Reactor.Networking.ModFlags.None)]
     public partial class AUModpackTools : BasePlugin
