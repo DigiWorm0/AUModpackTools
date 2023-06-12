@@ -14,12 +14,12 @@ namespace AUModpackTools.Patches
     [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.Start))]
     public static class DiscordPatch
     {
-        private static readonly Color _discordColor = new Color(0.45f, 0.54f, 0.85f);
-        private static readonly Vector3 _buttonPos = new Vector3(4.25f, 0.6f, -1.0f);
+        private static readonly Color _discordColor = new(0.45f, 0.54f, 0.85f);
+        private static readonly Vector3 _buttonPos = new(4.25f, 0.6f, -1.0f);
 
         private static Sprite? _discordSprite = null;
 
-        public static void Postfix(MainMenuManager __instance)
+        public static void Postfix()
         {
             if (!AUModpackTools.CustomConfig.EnableDiscord.Value)
                 return;

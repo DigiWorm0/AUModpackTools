@@ -39,15 +39,11 @@ namespace AUModpackTools.Patches
             var auBanner = GameObject.Find(AU_BANNER_NAME);
             if (auBanner != null)
             {
-                if (AUModpackTools.CustomConfig.EnableAmongUsBanner.Value)
-                {
-                    auBanner.transform.localScale *= 0.6f;
-                    auBanner.transform.position += Vector3.up * 0.25f;
-                }
-                else
-                {
+                auBanner.transform.localScale *= 0.6f;
+                auBanner.transform.position += Vector3.up * 0.25f;
+
+                if (AUModpackTools.CustomConfig.DisableAmongUsBanner.Value)
                     auBanner.SetActive(false);
-                }
             }
 
             // Shift Modded Banners
@@ -57,7 +53,6 @@ namespace AUModpackTools.Patches
                 var oldBanner = GameObject.Find(moddedBannerName);
                 if (oldBanner != null)
                 {
-                    AULogger.Info($"Found {moddedBannerName}");
                     oldBanner.transform.localScale *= AUModpackTools.CustomConfig.OtherBannerScale.Value;
                     oldBanner.transform.position += otherBannerOffset;
                 }

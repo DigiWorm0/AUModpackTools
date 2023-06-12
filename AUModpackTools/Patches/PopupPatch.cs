@@ -16,7 +16,7 @@ namespace AUModpackTools.Patches
     {
         private static bool _hasShown = false;
 
-        public static void Postfix(MainMenuManager __instance)
+        public static void Postfix()
         {
             if (!AUModpackTools.CustomConfig.EnablePopup.Value || _hasShown)
                 return;

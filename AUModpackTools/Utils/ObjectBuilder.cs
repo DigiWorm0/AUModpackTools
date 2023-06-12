@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TMPro;
 using Twitch;
 using UnityEngine;
+using static CreditsScreenPopUp;
 
 namespace AUModpackTools.Utils
 {
@@ -78,6 +79,44 @@ namespace AUModpackTools.Utils
             // Popup
             popupComponent.Show(text);
             return popupComponent;
+        }
+
+        public static CreditsScreenPopUp BuildCredits(string text)
+        {
+            // Prefab
+            var creditsPrefab = UnityEngine.Object.FindObjectOfType<CreditsScreenPopUp>(true);
+            if (creditsPrefab == null)
+                throw new Exception("CreditsScreenPopUp prefab not found");
+
+            // Credits
+            var creditsPopup = UnityEngine.Object.Instantiate(creditsPrefab);
+            creditsPopup.gameObject.SetActive(true);
+
+            // Remove Old Text
+            var creditsParent = creditsPopup.CreditsParent.transform;
+            for (int i = 0; i < creditsParent.childCount; i++)
+                UnityEngine.Object.Destroy(creditsParent.GetChild(i).gameObject);
+
+            // Add New Text
+            var creditsBlockUI = UnityEngine.Object.Instantiate(
+                creditsPopup.CreditsBlockPrefab,
+                creditsPopup.CreditsParent.transform
+            );
+            creditsBlockUI.transform.localPosition += new Vector3(0, creditsPopup.YOffset * 2);
+            creditsBlockUI.Lines.text = text;
+            creditsBlockUI.Lines.enableWordWrapping = true;
+
+            // Scroll
+            float scrollHeight = creditsBlockUI.Lines.rectTransform.sizeDelta.y;
+            creditsPopup.CreditsScroll.stoppingPoint = scrollHeight;
+            creditsPopup.CreditsScroll.enabled = AUModpackTools.CustomConfig.CreditsAutoScroll.Value;
+
+            // Remove "Follow Us"
+            var followUs = creditsPopup.transform.FindChild("FollowUs");
+            if (followUs != null)
+                UnityEngine.Object.Destroy(followUs.gameObject);
+
+            return creditsPopup;
         }
     }
 }

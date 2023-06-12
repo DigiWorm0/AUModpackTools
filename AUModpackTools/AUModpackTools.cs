@@ -24,7 +24,6 @@ namespace AUModpackTools
 
         public override void Load()
         {
-            AULogger.Init();
             CustomConfig = new(Config);
             Harmony.PatchAll();
         }

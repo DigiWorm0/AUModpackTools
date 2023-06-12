@@ -12,11 +12,12 @@ Most configuration is done by editing the config file located in `BepInEx/config
 
 **Among Us Banner** - Disables the default Among Us banner on the main menu screen\
 **Banner:** - Adds a banner located on the main menu screen. A default image is included in `BepInEx/plugins/banner.png`.\
-**Banner Text** - Adds a text box to the banner located on the main menu screen. A default text file is included in `BepInEx/plugins/banner.txt`.\
+**Banner Text** - Adds a text box to the banner located on the main menu screen. A default text file is included in `BepInEx/plugins/banner.txt`. Supports [TMP Rich Text](http://digitalnativestudios.com/textmeshpro/docs/rich-text/). \
 **Modded Banner** - Shifts/adjusts banners included in many popular mods such as TOU, TOR, etc.\
 **Discord:** Adds a discord link to the main menu screen. Opens the link in a new browser tab.\
 **Twitch:** Adds a twitch link to the main menu screen. Opens the link in a new browser tab.\
-**Popup:** Launches a small popup in-game on start. Can be used for announcements or other information.
+**Popup:** Launches a small popup in-game on start. Can be used for announcements or other information.\
+**Credits:** Adds a credits button to the main menu screen. A default text file is included in `BepInEx/plugins/credits.txt`. Supports [TMP Rich Text](http://digitalnativestudios.com/textmeshpro/docs/rich-text/).
 
 ## License
 This software is distributed under the GNU GPLv3 License

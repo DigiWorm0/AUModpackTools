@@ -13,10 +13,7 @@ namespace AUModpackTools.Utils
     /// </summary>
     public class ModpackConfig
     {
-        private ConfigFile _config;
-
-        // Among Us Banner
-        public ConfigEntry<bool> EnableAmongUsBanner { get; private set; }
+        private readonly ConfigFile _config;
 
         // Banner
         public ConfigEntry<bool> EnableBanner { get; private set; }
@@ -48,11 +45,18 @@ namespace AUModpackTools.Utils
         public ConfigEntry<bool> EnablePopup { get; private set; }
         public ConfigEntry<string> PopupText { get; private set; }
 
+        // Credits
+        public ConfigEntry<bool> EnableCredits { get; private set; }
+        public ConfigEntry<bool> CreditsAutoScroll { get; private set; }
+        public ConfigEntry<string> CreditsFileName { get; private set; }
+
+        // Other
+        public ConfigEntry<bool> DisableAmongUsBanner { get; private set; }
+
+
         public ModpackConfig(ConfigFile configFile)
         {
             _config = configFile;
-
-            EnableAmongUsBanner = configFile.Bind("Among Us Banner", "Enable", true, "Enable/Disable the default Among Us banner on the main menu");
 
             EnableBanner = configFile.Bind("Banner", "Enable", false, "Enable a custom banner on the main menu");
             BannerFileName = configFile.Bind("Banner", "FileName", "banner.png", "The file name of the banner image located in the BepInEx/plugins folder");
@@ -77,6 +81,12 @@ namespace AUModpackTools.Utils
 
             EnablePopup = configFile.Bind("Popup", "Enable", false, "Enable a custom popup message");
             PopupText = configFile.Bind("Popup", "Text", "This is a custom popup message", "The text to display in the popup");
+
+            EnableCredits = configFile.Bind("Credits", "Enable", false, "Enable a custom credits message");
+            CreditsAutoScroll = configFile.Bind("Credits", "AutoScroll", true, "Enable auto scrolling of the credits");
+            CreditsFileName = configFile.Bind("Credits", "FileName", "credits.txt", "The file name of the credits text located in the BepInEx/plugins folder");
+
+            DisableAmongUsBanner = configFile.Bind("Other", "DisableAmongUsBanner", false, "Disable the default Among Us banner");
 
             configFile.Save();
         }

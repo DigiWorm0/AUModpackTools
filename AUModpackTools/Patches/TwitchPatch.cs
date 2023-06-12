@@ -14,12 +14,12 @@ namespace AUModpackTools.Patches
     [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.Start))]
     public static class TwitchPatch
     {
-        private static readonly Color _twitchColor = new Color(0.39f, 0.25f, 0.65f);
-        private static readonly Vector3 _buttonPos = new Vector3(4.25f, 1.2f, -1.0f);
+        private static readonly Color _twitchColor = new(0.39f, 0.25f, 0.65f);
+        private static readonly Vector3 _buttonPos = new(4.25f, 1.2f, -1.0f);
 
         private static Sprite? _twitchSprite = null;
 
-        public static void Postfix(MainMenuManager __instance)
+        public static void Postfix()
         {
             if (!AUModpackTools.CustomConfig.EnableTwitch.Value)
                 return;

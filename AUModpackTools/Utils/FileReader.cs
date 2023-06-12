@@ -13,6 +13,8 @@ namespace AUModpackTools.Utils
     /// </summary>
     public static class FileReader
     {
+        private const string MODPACK_TOOLS_DIR = "AUModpackTools";
+
         /// <summary>
         /// Gets the directory of a file in the game's assembly directory
         /// </summary>
@@ -21,7 +23,7 @@ namespace AUModpackTools.Utils
         public static string GetDirectory(string fileName)
         {
             string gameDir = Assembly.GetAssembly(typeof(AUModpackTools))?.Location ?? "/";
-            string filePath = Path.Combine(Path.GetDirectoryName(gameDir) ?? "/", fileName);
+            string filePath = Path.Combine(Path.GetDirectoryName(gameDir) ?? "/", MODPACK_TOOLS_DIR, fileName);
             return filePath;
         }
 
