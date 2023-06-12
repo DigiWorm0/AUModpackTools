@@ -50,15 +50,13 @@ namespace AUModpackTools.Utils
         public static Sprite LoadSpriteFromResources(string resourceName)
         {
             Assembly assembly = Assembly.GetExecutingAssembly();
-            using (Stream? resourceStream = assembly.GetManifestResourceStream($"AUModpackTools.Assets.{resourceName}"))
-            {
-                if (resourceStream == null)
-                    throw new FileNotFoundException($"Failed to find resource {resourceName}");
+            using Stream? resourceStream = assembly.GetManifestResourceStream($"AUModpackTools.Assets.{resourceName}");
+            if (resourceStream == null)
+                throw new FileNotFoundException($"Failed to find resource {resourceName}");
 
-                byte[] resourceData = new byte[resourceStream.Length];
-                resourceStream.Read(resourceData);
-                return LoadSprite(resourceData);
-            }
+            byte[] resourceData = new byte[resourceStream.Length];
+            resourceStream.Read(resourceData);
+            return LoadSprite(resourceData);
         }
 
         /// <summary>
