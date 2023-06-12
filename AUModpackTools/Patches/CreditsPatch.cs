@@ -17,7 +17,6 @@ namespace AUModpackTools.Patches
     public static class CreditsPatch
     {
         private static readonly Color _creditsColor = new(0.5f, 0.5f, 0.5f);
-        private static readonly Vector3 _buttonPos = new(4.25f, 0, -1.0f);
 
         private static Sprite? _creditsSprite = null;
         private static string? _creditsText = null;
@@ -28,12 +27,12 @@ namespace AUModpackTools.Patches
             if (!AUModpackTools.CustomConfig.EnableCredits.Value)
                 return;
 
-            // Load Banner
+            // Load Button
             if (_creditsSprite == null)
-                _creditsSprite = SpriteLoader.LoadSpriteFromResources("credits.png");
+                _creditsSprite = SpriteLoader.LoadSpriteFromFile(AUModpackTools.CustomConfig.CreditsButtonFileName.Value);
 
             ObjectBuilder.BuildButton(
-                _buttonPos,
+                new Vector3(AUModpackTools.CustomConfig.CreditsX.Value, AUModpackTools.CustomConfig.CreditsY.Value, -1.0f),
                 _creditsSprite,
                 _creditsColor,
                 LaunchCredits
@@ -44,7 +43,7 @@ namespace AUModpackTools.Patches
         {
             // Get Text
             if (_creditsText == null)
-                _creditsText = FileReader.ReadFileString(AUModpackTools.CustomConfig.CreditsFileName.Value);
+                _creditsText = FileReader.ReadFileString(AUModpackTools.CustomConfig.CreditsTextFileName.Value);
 
             // Create Popup
             if (_creditsPopup == null)

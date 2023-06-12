@@ -15,7 +15,6 @@ namespace AUModpackTools.Patches
     public static class DiscordPatch
     {
         private static readonly Color _discordColor = new(0.45f, 0.54f, 0.85f);
-        private static readonly Vector3 _buttonPos = new(4.25f, 0.6f, -1.0f);
 
         private static Sprite? _discordSprite = null;
 
@@ -29,7 +28,7 @@ namespace AUModpackTools.Patches
                 _discordSprite = SpriteLoader.LoadSpriteFromResources("discord.png");
 
             ObjectBuilder.BuildButton(
-                _buttonPos,
+                new Vector3(AUModpackTools.CustomConfig.DiscordX.Value, AUModpackTools.CustomConfig.DiscordY.Value, -1.0f),
                 _discordSprite,
                 _discordColor,
                 LaunchDiscord

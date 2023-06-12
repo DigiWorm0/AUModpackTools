@@ -36,19 +36,27 @@ namespace AUModpackTools.Utils
         // Discord
         public ConfigEntry<bool> EnableDiscord { get; private set; }
         public ConfigEntry<string> DiscordLink { get; private set; }
+        public ConfigEntry<float> DiscordX { get; private set; }
+        public ConfigEntry<float> DiscordY { get; private set; }
 
         // Twitch
         public ConfigEntry<bool> EnableTwitch { get; private set; }
         public ConfigEntry<string> TwitchLink { get; private set; }
+        public ConfigEntry<float> TwitchX { get; private set; }
+        public ConfigEntry<float> TwitchY { get; private set; }
 
-        // Popup
-        public ConfigEntry<bool> EnablePopup { get; private set; }
-        public ConfigEntry<string> PopupText { get; private set; }
 
         // Credits
         public ConfigEntry<bool> EnableCredits { get; private set; }
         public ConfigEntry<bool> CreditsAutoScroll { get; private set; }
-        public ConfigEntry<string> CreditsFileName { get; private set; }
+        public ConfigEntry<string> CreditsButtonFileName { get; private set; } 
+        public ConfigEntry<string> CreditsTextFileName { get; private set; }
+        public ConfigEntry<float> CreditsX { get; private set; }
+        public ConfigEntry<float> CreditsY { get; private set; }
+
+        // Popup
+        public ConfigEntry<bool> EnablePopup { get; private set; }
+        public ConfigEntry<string> PopupText { get; private set; }
 
         // Other
         public ConfigEntry<bool> DisableAmongUsBanner { get; private set; }
@@ -75,16 +83,23 @@ namespace AUModpackTools.Utils
 
             EnableDiscord = configFile.Bind("Discord", "Enable", false, "Enable a custom discord link");
             DiscordLink = configFile.Bind("Discord", "Link", "https://discord.gg/invite", "The discord link to open when clicking the discord button");
+            DiscordX = configFile.Bind("Discord", "X", 4.25f, "The X offset of the discord button");
+            DiscordY = configFile.Bind("Discord", "Y", 0.6f, "The Y offset of the discord button");
 
             EnableTwitch = configFile.Bind("Twitch", "Enable", false, "Enable a custom twitch link");
             TwitchLink = configFile.Bind("Twitch", "Link", "https://www.twitch.tv/channel_name", "The twitch link to open when clicking the twitch button");
+            TwitchX = configFile.Bind("Twitch", "X", 4.25f, "The X offset of the twitch button");
+            TwitchY = configFile.Bind("Twitch", "Y", 1.2f, "The Y offset of the twitch button");
+
+            EnableCredits = configFile.Bind("Credits", "Enable", false, "Enable a custom credits button");
+            CreditsAutoScroll = configFile.Bind("Credits", "AutoScroll", true, "Enable auto scrolling of the credits");
+            CreditsButtonFileName = configFile.Bind("Credits", "ButtonFileName", "credits.png", "The file name of the credits button image located in the BepInEx/plugins folder");
+            CreditsTextFileName = configFile.Bind("Credits", "TextFileName", "credits.txt", "The file name of the credits text located in the BepInEx/plugins folder");
+            CreditsX = configFile.Bind("Credits", "X", 4.25f, "The X offset of the credits button");
+            CreditsY = configFile.Bind("Credits", "Y", 0f, "The Y offset of the credits button");
 
             EnablePopup = configFile.Bind("Popup", "Enable", false, "Enable a custom popup message");
             PopupText = configFile.Bind("Popup", "Text", "This is a custom popup message", "The text to display in the popup");
-
-            EnableCredits = configFile.Bind("Credits", "Enable", false, "Enable a custom credits message");
-            CreditsAutoScroll = configFile.Bind("Credits", "AutoScroll", true, "Enable auto scrolling of the credits");
-            CreditsFileName = configFile.Bind("Credits", "FileName", "credits.txt", "The file name of the credits text located in the BepInEx/plugins folder");
 
             DisableAmongUsBanner = configFile.Bind("Other", "DisableAmongUsBanner", false, "Disable the default Among Us banner");
 

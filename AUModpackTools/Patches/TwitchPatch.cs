@@ -15,7 +15,6 @@ namespace AUModpackTools.Patches
     public static class TwitchPatch
     {
         private static readonly Color _twitchColor = new(0.39f, 0.25f, 0.65f);
-        private static readonly Vector3 _buttonPos = new(4.25f, 1.2f, -1.0f);
 
         private static Sprite? _twitchSprite = null;
 
@@ -29,7 +28,7 @@ namespace AUModpackTools.Patches
                 _twitchSprite = SpriteLoader.LoadSpriteFromResources("twitch.png");
 
             ObjectBuilder.BuildButton(
-                _buttonPos,
+                new Vector3(AUModpackTools.CustomConfig.TwitchX.Value, AUModpackTools.CustomConfig.TwitchY.Value, -1.0f),
                 _twitchSprite,
                 _twitchColor,
                 LaunchTwitch
