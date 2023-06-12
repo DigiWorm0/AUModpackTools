@@ -15,6 +15,9 @@ namespace AUModpackTools.Utils
     {
         private ConfigFile _config;
 
+        // Among Us Banner
+        public ConfigEntry<bool> EnableAmongUsBanner { get; private set; }
+
         // Banner
         public ConfigEntry<bool> EnableBanner { get; private set; }
         public ConfigEntry<string> BannerFileName { get; private set; }
@@ -48,6 +51,8 @@ namespace AUModpackTools.Utils
         public ModpackConfig(ConfigFile configFile)
         {
             _config = configFile;
+
+            EnableAmongUsBanner = configFile.Bind("Among Us Banner", "Enable", true, "Enable/Disable the default Among Us banner on the main menu");
 
             EnableBanner = configFile.Bind("Banner", "Enable", false, "Enable a custom banner on the main menu");
             BannerFileName = configFile.Bind("Banner", "FileName", "banner.png", "The file name of the banner image located in the BepInEx/plugins folder");

@@ -39,8 +39,15 @@ namespace AUModpackTools.Patches
             var auBanner = GameObject.Find(AU_BANNER_NAME);
             if (auBanner != null)
             {
-                auBanner.transform.localScale *= 0.6f;
-                auBanner.transform.position += Vector3.up * 0.25f;
+                if (AUModpackTools.CustomConfig.EnableAmongUsBanner.Value)
+                {
+                    auBanner.transform.localScale *= 0.6f;
+                    auBanner.transform.position += Vector3.up * 0.25f;
+                }
+                else
+                {
+                    auBanner.SetActive(false);
+                }
             }
 
             // Shift Modded Banners
