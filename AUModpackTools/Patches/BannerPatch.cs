@@ -15,16 +15,18 @@ namespace AUModpackTools.Patches
     [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.Start))]
     public static class BannerPatch
     {
-        private static readonly string[] _oldBannerList = new string[]
+        private static readonly string AU_BANNER_NAME = "MainUI/bannerLogo_AmongUs";
+        private static readonly string[] MODDED_BANNER_NAMES = new string[]
         {
-            "MainUI/bannerLogo_AmongUs",
             "bannerLogo_TownOfUs", // Town of Us
-            "bannerLogo_TOR" // The Other Roles
+            "bannerLogo_TOR", // The Other Roles, StellarRoles
+            "bannerLogo_LasMonjas", // Las Monjas
+            "bannerLogo_ATR" // All The Roles
         };
 
         private static Sprite? _bannerSprite = null;
 
-        public static void Postfix(MainMenuManager __instance)
+        public static void Postfix()
         {
             if (!AUModpackTools.CustomConfig.EnableBanner.Value)
                 return;
@@ -33,20 +35,24 @@ namespace AUModpackTools.Patches
             if (_bannerSprite == null)
                 _bannerSprite = SpriteLoader.LoadSpriteFromFile(AUModpackTools.CustomConfig.BannerFileName.Value);
 
-            // Shift Old Banners
-            foreach (var oldBannerName in _oldBannerList)
+            // Shift AU Banner
+            var auBanner = GameObject.Find(AU_BANNER_NAME);
+            if (auBanner != null)
             {
-                bool isAmongUs = oldBannerName.EndsWith("AmongUs");
-                var oldBanner = GameObject.Find(oldBannerName);
+                auBanner.transform.localScale *= 0.6f;
+                auBanner.transform.position += Vector3.up * 0.25f;
+            }
 
+            // Shift Modded Banners
+            var otherBannerOffset = new Vector3(AUModpackTools.CustomConfig.OtherBannerX.Value, AUModpackTools.CustomConfig.OtherBannerY.Value);
+            foreach (var moddedBannerName in MODDED_BANNER_NAMES)
+            {
+                var oldBanner = GameObject.Find(moddedBannerName);
                 if (oldBanner != null)
                 {
-                    oldBanner.transform.localScale *= (isAmongUs ? 0.6f : 0.4f);
-                    oldBanner.transform.position += Vector3.up * (isAmongUs ? 0.25f : 0.8f);
-                }
-                else
-                {
-                    Debug.Log("Could not find " + oldBannerName + " to shift");
+                    AULogger.Info($"Found {moddedBannerName}");
+                    oldBanner.transform.localScale *= AUModpackTools.CustomConfig.OtherBannerScale.Value;
+                    oldBanner.transform.position += otherBannerOffset;
                 }
             }
 
