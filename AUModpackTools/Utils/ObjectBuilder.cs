@@ -31,17 +31,30 @@ namespace AUModpackTools.Utils
             btnObj.name = "button_LevelImposterUpdater";
             btnObj.transform.localPosition = pos;
 
+            // Active/Inactive
+            GameObject active = btnObj.transform.Find("Highlight").gameObject;
+            GameObject inactive = btnObj.transform.Find("Inactive").gameObject;
+
             // Sprite
             float btnAspect = btnSprite.rect.height / btnSprite.rect.width;
-            SpriteRenderer btnRenderer = btnObj.GetComponent<SpriteRenderer>();
-            btnRenderer.sprite = btnSprite;
-            btnRenderer.size = new Vector2(
+
+            // Active
+            SpriteRenderer btnRendererActive = active.GetComponent<SpriteRenderer>();
+            btnRendererActive.sprite = btnSprite;
+            btnRendererActive.size = new Vector2(
                 1.3f,
                 1.3f * btnAspect
             );
+            btnRendererActive.color = hoverColor;
 
-            // Text
-            Transform textTransform = btnObj.transform.GetChild(0);
+            // Inactive
+            SpriteRenderer btnRendererInactive = inactive.GetComponent<SpriteRenderer>();
+            btnRendererInactive.sprite = btnSprite;
+            btnRendererInactive.size = btnRendererActive.size;
+            btnRendererInactive.color = Color.white;
+
+            // Remove Text
+            Transform textTransform = btnObj.transform.FindChild("FontPlacer");
             UnityEngine.Object.Destroy(textTransform.gameObject);
 
             // Remove Aspect
@@ -53,13 +66,9 @@ namespace AUModpackTools.Utils
             btnComponent.OnClick = new();
             btnComponent.OnClick.AddListener(onClick);
 
-            // Button Hover
-            ButtonRolloverHandler btnRollover = btnObj.GetComponent<ButtonRolloverHandler>();
-            btnRollover.OverColor = hoverColor;
-
             // Box Collider
             BoxCollider2D btnCollider = btnObj.GetComponent<BoxCollider2D>();
-            btnCollider.size = btnRenderer.size;
+            btnCollider.size = btnRendererActive.size;
 
             return btnObj;
         }
@@ -110,6 +119,11 @@ namespace AUModpackTools.Utils
             float scrollHeight = creditsBlockUI.Lines.rectTransform.sizeDelta.y;
             creditsPopup.CreditsScroll.stoppingPoint = scrollHeight;
             creditsPopup.CreditsScroll.enabled = AUModpackTools.CustomConfig.CreditsAutoScroll.Value;
+
+            // Tint
+            var tint = creditsPopup.transform.FindChild("tint"); // TODO: Fix Credits Background
+            if (tint != null)
+                tint.gameObject.SetActive(true);
 
             // Remove "Follow Us"
             var followUs = creditsPopup.transform.FindChild("FollowUs");

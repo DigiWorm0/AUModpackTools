@@ -26,15 +26,16 @@ namespace AUModpackTools.Patches
             // Load Banner
             if (_creditsText == null)
                 _creditsText = FileReader.ReadFileString(AUModpackTools.CustomConfig.BannerTextFileName.Value);
-
-            // Add New Text
-            var textPrefab = __instance.text.gameObject;
-            var textObj = UnityEngine.Object.Instantiate(textPrefab, textPrefab.transform.parent);
-            textObj.transform.position = new Vector3(
+            var textOffset = new Vector3(
                 AUModpackTools.CustomConfig.BannerTextX.Value,
                 AUModpackTools.CustomConfig.BannerTextY.Value,
                 0
             );
+
+            // Add New Text
+            var textPrefab = __instance.text.gameObject;
+            var textObj = UnityEngine.Object.Instantiate(textPrefab, textPrefab.transform.parent);
+            textObj.transform.position = textOffset + new Vector3(1.0f, -0.5f, -1.5f);
 
             // Set Text
             var textComponent = textObj.GetComponent<TMP_Text>();

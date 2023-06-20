@@ -15,7 +15,7 @@ namespace AUModpackTools.Patches
     [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.Start))]
     public static class BannerPatch
     {
-        private static readonly string AU_BANNER_NAME = "MainUI/bannerLogo_AmongUs";
+        private static readonly string AU_BANNER_NAME = "MainMenuManager/MainUI/AspectScaler/LeftPanel/Sizer/LOGO-AU";
         private static readonly string[] MODDED_BANNER_NAMES = new string[]
         {
             "bannerLogo_TownOfUs", // Town of Us
@@ -61,7 +61,7 @@ namespace AUModpackTools.Patches
             // Add New Banner
             var bannerOffset = new Vector3(AUModpackTools.CustomConfig.BannerX.Value, AUModpackTools.CustomConfig.BannerY.Value);
             var banner = new GameObject("bannerLogo_AUModpackTools");
-            banner.transform.position = Vector3.up * 0.9f + bannerOffset;
+            banner.transform.position = bannerOffset + new Vector3(1.0f, 0, -1.5f);
             banner.transform.localScale *= AUModpackTools.CustomConfig.BannerScale.Value;
             var spriteRenderer = banner.AddComponent<SpriteRenderer>();
             spriteRenderer.sprite = _bannerSprite;
