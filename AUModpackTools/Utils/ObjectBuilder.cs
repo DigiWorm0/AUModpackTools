@@ -31,17 +31,30 @@ namespace AUModpackTools.Utils
             btnObj.name = "button_LevelImposterUpdater";
             btnObj.transform.localPosition = pos;
 
+            // Active/Inactive
+            GameObject active = btnObj.transform.Find("Highlight").gameObject;
+            GameObject inactive = btnObj.transform.Find("Inactive").gameObject;
+
             // Sprite
             float btnAspect = btnSprite.rect.height / btnSprite.rect.width;
-            SpriteRenderer btnRenderer = btnObj.GetComponent<SpriteRenderer>();
-            btnRenderer.sprite = btnSprite;
-            btnRenderer.size = new Vector2(
+
+            // Active
+            SpriteRenderer btnRendererActive = active.GetComponent<SpriteRenderer>();
+            btnRendererActive.sprite = btnSprite;
+            btnRendererActive.size = new Vector2(
                 1.3f,
                 1.3f * btnAspect
             );
+            btnRendererActive.color = hoverColor;
 
-            // Text
-            Transform textTransform = btnObj.transform.GetChild(0);
+            // Inactive
+            SpriteRenderer btnRendererInactive = inactive.GetComponent<SpriteRenderer>();
+            btnRendererInactive.sprite = btnSprite;
+            btnRendererInactive.size = btnRendererActive.size;
+            btnRendererInactive.color = Color.white;
+
+            // Remove Text
+            Transform textTransform = btnObj.transform.FindChild("FontPlacer");
             UnityEngine.Object.Destroy(textTransform.gameObject);
 
             // Remove Aspect
@@ -53,18 +66,14 @@ namespace AUModpackTools.Utils
             btnComponent.OnClick = new();
             btnComponent.OnClick.AddListener(onClick);
 
-            // Button Hover
-            ButtonRolloverHandler btnRollover = btnObj.GetComponent<ButtonRolloverHandler>();
-            btnRollover.OverColor = hoverColor;
-
             // Box Collider
             BoxCollider2D btnCollider = btnObj.GetComponent<BoxCollider2D>();
-            btnCollider.size = btnRenderer.size;
+            btnCollider.size = btnRendererActive.size;
 
             return btnObj;
         }
 
-        public static GenericPopup BuildPopup(string text)
+        public static GenericPopup BuildPopup()
         {
             // Prefab
             GameObject popupPrefab = DestroyableSingleton<TwitchManager>.Instance.TwitchPopup.gameObject;
@@ -76,47 +85,15 @@ namespace AUModpackTools.Utils
             popupText.enableAutoSizing = false;
             popupText.fontSize = 1.5f;
 
-            // Popup
-            popupComponent.Show(text);
+            // Background
+            SpriteRenderer popupBackground = popupObject.transform.Find("Background").GetComponent<SpriteRenderer>();
+            popupBackground.size = new Vector2(5, 5);
+
+            // Button
+            Transform confirmButton = popupObject.transform.Find("ExitGame");
+            confirmButton.position -= new Vector3(0, 1.2f, 0);
+
             return popupComponent;
-        }
-
-        public static CreditsScreenPopUp BuildCredits(string text)
-        {
-            // Prefab
-            var creditsPrefab = UnityEngine.Object.FindObjectOfType<CreditsScreenPopUp>(true);
-            if (creditsPrefab == null)
-                throw new Exception("CreditsScreenPopUp prefab not found");
-
-            // Credits
-            var creditsPopup = UnityEngine.Object.Instantiate(creditsPrefab);
-            creditsPopup.gameObject.SetActive(true);
-
-            // Remove Old Text
-            var creditsParent = creditsPopup.CreditsParent.transform;
-            for (int i = 0; i < creditsParent.childCount; i++)
-                UnityEngine.Object.Destroy(creditsParent.GetChild(i).gameObject);
-
-            // Add New Text
-            var creditsBlockUI = UnityEngine.Object.Instantiate(
-                creditsPopup.CreditsBlockPrefab,
-                creditsPopup.CreditsParent.transform
-            );
-            creditsBlockUI.transform.localPosition += new Vector3(0, creditsPopup.YOffset * 2);
-            creditsBlockUI.Lines.text = text;
-            creditsBlockUI.Lines.enableWordWrapping = true;
-
-            // Scroll
-            float scrollHeight = creditsBlockUI.Lines.rectTransform.sizeDelta.y;
-            creditsPopup.CreditsScroll.stoppingPoint = scrollHeight;
-            creditsPopup.CreditsScroll.enabled = AUModpackTools.CustomConfig.CreditsAutoScroll.Value;
-
-            // Remove "Follow Us"
-            var followUs = creditsPopup.transform.FindChild("FollowUs");
-            if (followUs != null)
-                UnityEngine.Object.Destroy(followUs.gameObject);
-
-            return creditsPopup;
         }
     }
 }

@@ -15,15 +15,24 @@ namespace AUModpackTools.Patches
     public static class PopupPatch
     {
         private static bool _hasShown = false;
+        private static string? _popupText = null;
+        private static GenericPopup? _popup = null;
 
         public static void Postfix()
         {
             if (!AUModpackTools.CustomConfig.EnablePopup.Value || _hasShown)
                 return;
 
-            ObjectBuilder.BuildPopup(
-                AUModpackTools.CustomConfig.PopupText.Value
-            );
+            // Get Text
+            if (_popupText == null)
+                _popupText = FileReader.ReadFileString(AUModpackTools.CustomConfig.PopupTextFileName.Value);
+
+            // Create Popup
+            if (_popup == null)
+                _popup = ObjectBuilder.BuildPopup();
+            _popup.Show(_popupText);
+
+            // Only Show Once
             _hasShown = true;
         }
     }

@@ -48,7 +48,6 @@ namespace AUModpackTools.Utils
 
         // Credits
         public ConfigEntry<bool> EnableCredits { get; private set; }
-        public ConfigEntry<bool> CreditsAutoScroll { get; private set; }
         public ConfigEntry<string> CreditsButtonFileName { get; private set; } 
         public ConfigEntry<string> CreditsTextFileName { get; private set; }
         public ConfigEntry<float> CreditsX { get; private set; }
@@ -56,7 +55,7 @@ namespace AUModpackTools.Utils
 
         // Popup
         public ConfigEntry<bool> EnablePopup { get; private set; }
-        public ConfigEntry<string> PopupText { get; private set; }
+        public ConfigEntry<string> PopupTextFileName { get; private set; }
 
         // Other
         public ConfigEntry<bool> DisableAmongUsBanner { get; private set; }
@@ -68,13 +67,13 @@ namespace AUModpackTools.Utils
 
             EnableBanner = configFile.Bind("Banner", "Enable", false, "Enable a custom banner on the main menu");
             BannerFileName = configFile.Bind("Banner", "FileName", "banner.png", "The file name of the banner image located in the BepInEx/plugins folder");
-            BannerScale = configFile.Bind("Banner", "Scale", 1f, "The scale of the banner image");
+            BannerScale = configFile.Bind("Banner", "Scale", 0.5f, "The scale of the banner image");
             BannerX = configFile.Bind("Banner", "X", 0f, "The X offset of the banner image");
             BannerY = configFile.Bind("Banner", "Y", 0f, "The Y offset of the banner image");
 
             OtherBannerX = configFile.Bind("Modded Banner", "X", 0f, "The X offset of another mod's banner image");
-            OtherBannerY = configFile.Bind("Modded Banner", "Y", 0.8f, "The Y offset of another mod's banner image");
-            OtherBannerScale = configFile.Bind("Modded Banner", "Scale", 0.4f, "The scale of another mod's banner image");
+            OtherBannerY = configFile.Bind("Modded Banner", "Y", 0f, "The Y offset of another mod's banner image");
+            OtherBannerScale = configFile.Bind("Modded Banner", "Scale", 1.0f, "The scale of another mod's banner image");
 
             EnableBannerText = configFile.Bind("Banner Text", "Enable", false, "Enable a custom banner text");
             BannerTextFileName = configFile.Bind("Banner Text", "FileName", "banner.txt", "The file name of the banner text located in the BepInEx/plugins folder");
@@ -84,22 +83,21 @@ namespace AUModpackTools.Utils
             EnableDiscord = configFile.Bind("Discord", "Enable", false, "Enable a custom discord link");
             DiscordLink = configFile.Bind("Discord", "Link", "https://discord.gg/invite", "The discord link to open when clicking the discord button");
             DiscordX = configFile.Bind("Discord", "X", 4.25f, "The X offset of the discord button");
-            DiscordY = configFile.Bind("Discord", "Y", 0.6f, "The Y offset of the discord button");
+            DiscordY = configFile.Bind("Discord", "Y", 0f, "The Y offset of the discord button");
 
             EnableTwitch = configFile.Bind("Twitch", "Enable", false, "Enable a custom twitch link");
             TwitchLink = configFile.Bind("Twitch", "Link", "https://www.twitch.tv/channel_name", "The twitch link to open when clicking the twitch button");
             TwitchX = configFile.Bind("Twitch", "X", 4.25f, "The X offset of the twitch button");
-            TwitchY = configFile.Bind("Twitch", "Y", 1.2f, "The Y offset of the twitch button");
+            TwitchY = configFile.Bind("Twitch", "Y", 0.5f, "The Y offset of the twitch button");
 
             EnableCredits = configFile.Bind("Credits", "Enable", false, "Enable a custom credits button");
-            CreditsAutoScroll = configFile.Bind("Credits", "AutoScroll", true, "Enable auto scrolling of the credits");
             CreditsButtonFileName = configFile.Bind("Credits", "ButtonFileName", "credits.png", "The file name of the credits button image located in the BepInEx/plugins folder");
             CreditsTextFileName = configFile.Bind("Credits", "TextFileName", "credits.txt", "The file name of the credits text located in the BepInEx/plugins folder");
             CreditsX = configFile.Bind("Credits", "X", 4.25f, "The X offset of the credits button");
-            CreditsY = configFile.Bind("Credits", "Y", 0f, "The Y offset of the credits button");
+            CreditsY = configFile.Bind("Credits", "Y", -0.5f, "The Y offset of the credits button");
 
             EnablePopup = configFile.Bind("Popup", "Enable", false, "Enable a custom popup message");
-            PopupText = configFile.Bind("Popup", "Text", "This is a custom popup message", "The text to display in the popup");
+            PopupTextFileName = configFile.Bind("Popup", "TextFileName", "popup.txt", "The file name of the popup text located in the BepInEx/plugins folder");
 
             DisableAmongUsBanner = configFile.Bind("Other", "DisableAmongUsBanner", false, "Disable the default Among Us banner");
 
