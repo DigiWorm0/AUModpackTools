@@ -48,7 +48,6 @@ namespace AUModpackTools.Utils
 
         // Credits
         public ConfigEntry<bool> EnableCredits { get; private set; }
-        public ConfigEntry<bool> CreditsAutoScroll { get; private set; }
         public ConfigEntry<string> CreditsButtonFileName { get; private set; } 
         public ConfigEntry<string> CreditsTextFileName { get; private set; }
         public ConfigEntry<float> CreditsX { get; private set; }
@@ -56,7 +55,7 @@ namespace AUModpackTools.Utils
 
         // Popup
         public ConfigEntry<bool> EnablePopup { get; private set; }
-        public ConfigEntry<string> PopupText { get; private set; }
+        public ConfigEntry<string> PopupTextFileName { get; private set; }
 
         // Other
         public ConfigEntry<bool> DisableAmongUsBanner { get; private set; }
@@ -92,14 +91,13 @@ namespace AUModpackTools.Utils
             TwitchY = configFile.Bind("Twitch", "Y", 0.5f, "The Y offset of the twitch button");
 
             EnableCredits = configFile.Bind("Credits", "Enable", false, "Enable a custom credits button");
-            CreditsAutoScroll = configFile.Bind("Credits", "AutoScroll", true, "Enable auto scrolling of the credits");
             CreditsButtonFileName = configFile.Bind("Credits", "ButtonFileName", "credits.png", "The file name of the credits button image located in the BepInEx/plugins folder");
             CreditsTextFileName = configFile.Bind("Credits", "TextFileName", "credits.txt", "The file name of the credits text located in the BepInEx/plugins folder");
             CreditsX = configFile.Bind("Credits", "X", 4.25f, "The X offset of the credits button");
             CreditsY = configFile.Bind("Credits", "Y", -0.5f, "The Y offset of the credits button");
 
             EnablePopup = configFile.Bind("Popup", "Enable", false, "Enable a custom popup message");
-            PopupText = configFile.Bind("Popup", "Text", "This is a custom popup message", "The text to display in the popup");
+            PopupTextFileName = configFile.Bind("Popup", "TextFileName", "popup.txt", "The file name of the popup text located in the BepInEx/plugins folder");
 
             DisableAmongUsBanner = configFile.Bind("Other", "DisableAmongUsBanner", false, "Disable the default Among Us banner");
 

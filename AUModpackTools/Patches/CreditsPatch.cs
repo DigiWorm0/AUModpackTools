@@ -20,7 +20,7 @@ namespace AUModpackTools.Patches
 
         private static Sprite? _creditsSprite = null;
         private static string? _creditsText = null;
-        private static CreditsScreenPopUp? _creditsPopup = null;
+        private static GenericPopup? _creditsPopup = null;
 
         public static void Postfix()
         {
@@ -47,10 +47,8 @@ namespace AUModpackTools.Patches
 
             // Create Popup
             if (_creditsPopup == null)
-                _creditsPopup = ObjectBuilder.BuildCredits(_creditsText);
-
-            // Show Popup
-            _creditsPopup.gameObject.SetActive(true);
+                _creditsPopup = ObjectBuilder.BuildPopup();
+            _creditsPopup.Show(_creditsText);
         }
     }
 }
